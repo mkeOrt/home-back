@@ -2,8 +2,10 @@ name: deployment
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize]
 
 jobs:
   unit-test:
@@ -19,4 +21,7 @@ jobs:
         run: yarn lint
       - name: Running unit test
         run: yarn test
+      - name: Deploy
+        if: ${{ github.event_name == 'push' }}
+        run: echo Deploying!!!!!
       
