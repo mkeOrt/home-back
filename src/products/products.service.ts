@@ -20,6 +20,6 @@ export class ProductsService {
   }
 
   findOne(id: number) {
-    return this.productsRepository.findOneBy({id});
+    return this.productsRepository.findOneBy({ id });
   }
 }

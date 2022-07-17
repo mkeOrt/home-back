@@ -1,12 +1,11 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
 import { Product } from './entities/product.entity';
 import { ProductsService } from './products.service';
 
 describe('ProductsService', () => {
   let productsService: ProductsService;
-  let productsRepository = {
+  const productsRepository = {
     find: jest.fn().mockResolvedValue([{ id: 1, name: 'Coca', price: 18 }]),
     findOneBy: jest.fn().mockResolvedValue({ id: 1, name: 'Coca', price: 18 }),
     save: jest.fn().mockResolvedValue({ id: 1, name: 'Coca', price: 18 }),
@@ -19,7 +18,7 @@ describe('ProductsService', () => {
         {
           provide: getRepositoryToken(Product),
           useValue: productsRepository,
-        }
+        },
       ],
     }).compile();
 
@@ -39,12 +38,12 @@ describe('ProductsService', () => {
 
   describe('findOne', () => {
     it('should return a product if exists', async () => {
-      const result: Product = { id: 1, name: "Coca", price: 18 };
+      const result: Product = { id: 1, name: 'Coca', price: 18 };
       expect(await productsService.findOne(1)).toStrictEqual(result);
     });
 
     it('should return a null if exists', async () => {
-      const result: null = null;
+      const result = null;
       jest.spyOn(productsService, 'findOne').mockImplementation(() => result);
       expect(await productsService.findOne(1)).toStrictEqual(result);
     });
@@ -53,7 +52,9 @@ describe('ProductsService', () => {
   describe('create', () => {
     it('should return a created product', async () => {
       const result: Product = { id: 1, name: 'Coca', price: 18 };
-      expect(await productsService.create({ name: 'Coca', price: 18 })).toStrictEqual(result);
+      expect(
+        await productsService.create({ name: 'Coca', price: 18 }),
+      ).toStrictEqual(result);
     });
   });
 });

@@ -12,9 +12,9 @@ import { Product } from './products/entities/product.entity';
       password: 'password',
       database: 'home-database',
       entities: [Product],
-      synchronize: true
+      synchronize: true,
     }),
-    ProductsModule
+    ProductsModule,
   ],
 })
 export class AppModule {}
