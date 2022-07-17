@@ -40,6 +40,8 @@ jobs:
         with:
           name: node_modules-artifact
           path: node_modules
+      - name: print files
+        run: ls
       - name: Running lint
         run: yarn lint
   
