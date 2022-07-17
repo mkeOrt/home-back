@@ -24,7 +24,7 @@ jobs:
       - name: Creating node_modules artifact
         uses: actions/upload-artifact@v3
         with:
-          name: node_modules-artifact
+          name: node_modules
           path: node_modules
 
 
@@ -38,10 +38,8 @@ jobs:
           node-version: 14
       - uses: actions/download-artifact@v3
         with:
-          name: node_modules-artifact
+          name: node_modules
           path: node_modules
-      - name: print files
-        run: ls node_modules
       - name: Running lint
         run: yarn lint
   
@@ -55,7 +53,7 @@ jobs:
           node-version: 14
       - uses: actions/download-artifact@v3
         with:
-          name: node_modules-artifact
+          name: node_modules
           path: node_modules
       - name: Running unit test
         run: yarn test
