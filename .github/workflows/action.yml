@@ -39,6 +39,7 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: node_modules-artifact
+          path: node_modules
       - name: Running lint
         run: yarn lint
   
@@ -53,6 +54,7 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: node_modules-artifact
+          path: node_modules
       - name: Running unit test
         run: yarn test
 
