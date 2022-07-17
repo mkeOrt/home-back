@@ -20,6 +20,8 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/setup-node@v3
+        with:
+          node-version: 14
       - name: Install dependencies
         run: yarn
       - name: Creating node_modules artifact
