@@ -8,23 +8,38 @@ on:
     types: [opened, synchronize]
 
 jobs:
-  unit-test:
+  avoid_redundancy:
     runs-on: ubuntu-18.04
     steps:
       - name: Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.9.1
         with:
           access_token: ${{ github.token }}
+
+  lint:
+    runs-on: ubuntu-18.04
+    steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: 14
-      - name: Install dependencies
-        run: yarn install --ignore-engines --ignore-optional
       - name: Running lint
         run: yarn lint
+  
+  test:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 14
       - name: Running unit test
         run: yarn test
+
+  deployment:
+    needs: [lint, test]
+    runs-on: ubuntu-18.04
+    steps:
       - name: Deploy
         if: ${{ github.event_name == 'push' }}
         run: echo Deployed!!!!!
