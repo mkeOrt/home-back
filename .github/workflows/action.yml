@@ -24,8 +24,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 14
-      - name: Install dependencies
-        run: yarn
+          cache: 'yarn'
       - name: Running lint
         run: yarn lint
   
@@ -36,8 +35,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 14
-      - name: Install dependencies
-        run: yarn
+          cache: 'yarn'
       - name: Running unit test
         run: yarn test
 
