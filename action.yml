@@ -1,0 +1,16 @@
+name: deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  unit test:
+    runs-on: ubuntu-18.04
+      steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18.6.0
+      - run: yarn test
