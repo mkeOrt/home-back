@@ -51,9 +51,9 @@ describe('ProductsService', () => {
 
   describe('create', () => {
     it('should return a created product', async () => {
-      const result: Product = { id: 1, name: 'Coca', price: 19 };
+      const result: Product = { id: 1, name: 'Coca', price: 18 };
       expect(
-        await productsService.create({ name: 'Coca', price: 19 }),
+        await productsService.create({ name: 'Coca', price: 18 }),
       ).toStrictEqual(result);
     });
   });
