@@ -16,46 +16,28 @@ jobs:
         with:
           access_token: ${{ github.token }}
 
-  install_dependencies:
+
+  lint:
     runs-on: ubuntu-18.04
     steps:
+      - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: 14
       - name: Install dependencies
         run: yarn
-      - name: Creating node_modules artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: node_modules
-          path: node_modules/
-
-
-  lint:
-    needs: [install_dependencies]
-    runs-on: ubuntu-18.04
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 14
-      - uses: actions/download-artifact@v3
-        with:
-          name: node_modules
       - name: Running lint
         run: yarn lint
   
   test:
-    needs: [install_dependencies]
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: 14
-      - uses: actions/download-artifact@v3
-        with:
-          name: node_modules
+      - name: Install dependencies
+        run: yarn
       - name: Running unit test
         run: yarn test
 
