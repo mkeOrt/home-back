@@ -29,6 +29,7 @@ jobs:
 
 
   lint:
+    needs: [install_dependencies]
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v3
@@ -42,6 +43,7 @@ jobs:
         run: yarn lint
   
   test:
+    needs: [install_dependencies]
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v3
