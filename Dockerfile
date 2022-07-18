@@ -1,7 +1,8 @@
 FROM node
 
 WORKDIR /home/app/dist
-COPY dist .
-COPY node_modules .
+COPY . .
 
-CMD ["node",  "main.js"]
+RUN yarn
+
+CMD ["node",  "dist/main.js"]
