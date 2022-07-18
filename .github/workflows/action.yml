@@ -45,9 +45,14 @@ jobs:
 
   deployment:
     needs: [lint, test]
-    runs-on: ubuntu-18.04
+    runs-on: self-hosted
     steps:
       - name: Deploy
         if: ${{ github.event_name == 'push' }}
-        run: echo Deployed!
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 14
+          cache: 'yarn'
+
       
