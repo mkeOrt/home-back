@@ -51,6 +51,12 @@ jobs:
         if: ${{ github.event_name == 'push' }}
         run: echo doploying!
       - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 14
+          cache: 'yarn'
+      - name: Install dependencies
+        run: yarn
       - name: docker compose
         run: docker compose up -d
       
