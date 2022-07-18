@@ -52,9 +52,9 @@ jobs:
         run: echo doploying!
       - uses: actions/checkout@v3
       - name: Installing dependencies
-        run: yarn
+        run: npm install
       - name: generate dist
-        run: yarn build
+        run: npm build
       - name: docker compose
         run: docker compose up -d
 
