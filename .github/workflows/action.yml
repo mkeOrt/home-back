@@ -49,6 +49,7 @@ jobs:
       - name: deployment
         if: ${{ github.event_name == 'push' }}
         run: echo doploying!
+      - uses: actions/checkout@v3
       - name: docker compose
         run: docker compose up -d
   # generate-dist:
