@@ -4,4 +4,4 @@ RUN mkdir -p /home/app
 WORKDIR /home/app
 COPY dist .
 
-CMD ["node",  "main.js"]
+CMD ["node",  "dist/main.js"]
