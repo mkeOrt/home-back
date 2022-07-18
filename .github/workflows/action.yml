@@ -49,6 +49,7 @@ jobs:
     steps:
       - name: deployment
         if: ${{ github.event_name == 'push' }}
+        run: echo doploying!
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
