@@ -49,9 +49,6 @@ jobs:
       - name: deployment
         if: ${{ github.event_name == 'push' }}
         run: echo doploying!
-      - uses: actions/download-artifact@v3
-        with:
-          name: dist
       - name: docker compose
         run: docker compose up -d
   # generate-dist:
