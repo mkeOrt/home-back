@@ -1,6 +1,6 @@
 FROM node:18.6
 
 WORKDIR /home/app
-COPY /dist .
+COPY . .
 
 CMD ["yarn",  "start:dev"]
