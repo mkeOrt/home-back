@@ -43,6 +43,21 @@ jobs:
       - name: Running unit test
         run: yarn test
 
+  generate-dist:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 14
+          cache: 'yarn'
+      - name: build
+        run: yarn build
+      - uses: actions/upload-artifact@v3
+        with:
+          name: dist
+          path: dist
+
   deployment:
     needs: [lint, test]
     runs-on: self-hosted
@@ -50,13 +65,10 @@ jobs:
       - name: deployment
         if: ${{ github.event_name == 'push' }}
         run: echo doploying!
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/download-artifact@v3
         with:
-          node-version: 14
-          cache: 'yarn'
-      - name: Install dependencies
-        run: yarn
+          name: dist
+          path: dist
       - name: docker compose
         run: docker compose up -d
       

@@ -1,6 +1,6 @@
 FROM node:18.6
 
 WORKDIR /home/app
-COPY . .
+COPY dist .
 
-CMD ["yarn",  "start:dev"]
+CMD ["node",  "main.js"]
