@@ -51,11 +51,14 @@ jobs:
         if: ${{ github.event_name == 'push' }}
         run: echo doploying!
       - uses: actions/checkout@v3
-      - name: Installing dependencies
-        run: yarn
-      - name: generate dist
-        run: yarn build
-      - name: docker compose
-        run: docker compose up -d
+      - name: build and push to docker
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ secret.DOCKER_USERNAME }}
+          password: ${{ secret.DOCKER_PASSWORD }}
+          repository: ${{ github.repository }}
+          tag_with_ref: true
+          tag_with_sha: true
+          tags: ${{ github.sha }}
 
       
