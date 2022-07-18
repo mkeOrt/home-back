@@ -59,6 +59,12 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 14
+          cache: 'yarn'
+      - name: generate dist
+        run: yarn build
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
