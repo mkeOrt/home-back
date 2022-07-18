@@ -63,6 +63,7 @@ jobs:
             dist
             Dockerfile
             docker-compose.yml
+            node_modules
 
   deployment:
     needs: [generate-dist]
