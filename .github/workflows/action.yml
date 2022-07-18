@@ -45,7 +45,7 @@ jobs:
 
   deployment:
     needs: [lint, test]
-    runs-on: self-hosted
+    runs-on: ubuntu-18.04
     steps:
       - name: deployment
         if: ${{ github.event_name == 'push' }}
