@@ -59,7 +59,10 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: dist
-          path: dist
+          path: |
+            dist
+            Dockerfile
+            docker-compose.yml
 
   deployment:
     needs: [generate-dist]
@@ -71,7 +74,6 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: dist
-          path: dist
       - name: docker compose
         run: docker compose up -d
       
