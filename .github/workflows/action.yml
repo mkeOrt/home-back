@@ -44,6 +44,7 @@ jobs:
         run: yarn test
 
   generate-dist:
+  needs: [lint, test]
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v3
@@ -59,7 +60,7 @@ jobs:
           path: dist
 
   deployment:
-    needs: [lint, test]
+    needs: [generate-dist]
     runs-on: self-hosted
     steps:
       - name: deployment
