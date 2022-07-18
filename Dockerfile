@@ -5,4 +5,4 @@ COPY . .
 
 RUN yarn
 
-CMD ["node",  "dist/main.js"]
+CMD ["node",  "main.js"]
