@@ -17,31 +17,31 @@ jobs:
           access_token: ${{ github.token }}
 
 
-  lint:
-    runs-on: ubuntu-18.04
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 14
-          cache: 'yarn'
-      - name: Install dependencies
-        run: yarn
-      - name: Running lint
-        run: yarn lint
+  # lint:
+  #   runs-on: ubuntu-18.04
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - uses: actions/setup-node@v3
+  #       with:
+  #         node-version: 14
+  #         cache: 'yarn'
+  #     - name: Install dependencies
+  #       run: yarn
+  #     - name: Running lint
+  #       run: yarn lint
   
-  test:
-    runs-on: ubuntu-18.04
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 14
-          cache: 'yarn'
-      - name: Install dependencies
-        run: yarn
-      - name: Running unit test
-        run: yarn test
+  # test:
+  #   runs-on: ubuntu-18.04
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - uses: actions/setup-node@v3
+  #       with:
+  #         node-version: 14
+  #         cache: 'yarn'
+  #     - name: Install dependencies
+  #       run: yarn
+  #     - name: Running unit test
+  #       run: yarn test
 
   generate-dist:
     needs: [lint, test]

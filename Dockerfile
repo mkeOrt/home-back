@@ -1,7 +1,6 @@
-FROM node:18.6
+FROM node:14.18.1-alpine3.2
 
-RUN mkdir -p /home/app
-WORKDIR /home/app
+WORKDIR /home/app/dist
 COPY dist .
 
-# CMD ["node",  "main.js"]
+CMD ["node",  "main.js"]
