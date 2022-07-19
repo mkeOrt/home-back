@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateProductDto } from './dto/create-product.dto';
+import { UpdateProductDto } from './dto/update-product.dto';
 import { Product } from './entities/product.entity';
 
 @Injectable()
@@ -21,5 +22,11 @@ export class ProductsService {
 
   findOne(id: number) {
     return this.productsRepository.findOneBy({ id });
+  }
+
+  async update(id: number, updateProductDto: UpdateProductDto) {
+    const product = await this.productsRepository.findOneBy({ id });
+    this.productsRepository.update(id, updateProductDto);
+    return updateProductDto;
   }
 }

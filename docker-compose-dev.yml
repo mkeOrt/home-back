@@ -1,6 +1,7 @@
 version: '3.9'
 services:
   home-back:
+    image: home-back
     container_name: home-back
     build:
       context: .
