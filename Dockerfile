@@ -1,8 +1,9 @@
 FROM node
 
-WORKDIR /home/app/dist
+WORKDIR /home/app
 COPY . .
 
 RUN yarn
+RUN yarn build
 
-CMD ["node",  "main.js"]
+CMD ["node",  "/home/app/dist/main.js"]
