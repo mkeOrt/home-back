@@ -17,9 +17,11 @@ export class ProductsService {
   }
 
   findAll() {
-    return this.productsRepository.find({order: {
-      id: 'ASC'
-    }});
+    return this.productsRepository.find({
+      order: {
+        id: 'ASC',
+      },
+    });
   }
 
   findOne(id: number) {
@@ -27,7 +29,6 @@ export class ProductsService {
   }
 
   async update(id: number, updateProductDto: UpdateProductDto) {
-    const product = await this.productsRepository.findOneBy({ id });
     this.productsRepository.update(id, updateProductDto);
     return updateProductDto;
   }
