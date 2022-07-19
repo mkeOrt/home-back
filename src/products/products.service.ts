@@ -17,7 +17,9 @@ export class ProductsService {
   }
 
   findAll() {
-    return this.productsRepository.find();
+    return this.productsRepository.find({order: {
+      id: 'ASC'
+    }});
   }
 
   findOne(id: number) {
