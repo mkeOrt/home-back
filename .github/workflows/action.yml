@@ -45,11 +45,11 @@ jobs:
 
   create-image:
     runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'push' }}
     steps:
       - name: deployment
-        if: ${{ github.event_name == 'push' }}
         run: echo doploying!
-      # - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
@@ -64,7 +64,8 @@ jobs:
         with:
           context: .
           push: true
-          tags: mkeort/home-back:latest
+          tags:
+            - mkeort/home-back:latest
 
 
   # deployment:
