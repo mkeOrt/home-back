@@ -9,7 +9,7 @@ on:
 
 jobs:
   avoid_redundancy:
-    runs-on: ubuntu-18.04
+    runs-on: ARM64
     steps:
       - name: Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.9.1
@@ -18,7 +18,7 @@ jobs:
 
 
   lint:
-    runs-on: ubuntu-18.04
+    runs-on: ARM64
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -26,12 +26,12 @@ jobs:
           node-version: 14
           cache: 'yarn'
       - name: Install dependencies
-        run: yarn --ignore-engines --ignore-optional
+        run: yarn --ignore-engines --ignore-optional --prefer-offline 
       - name: Running lint
         run: yarn lint
   
   test:
-    runs-on: ubuntu-18.04
+    runs-on: ARM64
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -39,7 +39,7 @@ jobs:
           node-version: 14
           cache: 'yarn'
       - name: Install dependencies
-        run: yarn --ignore-engines --ignore-optional
+        run: yarn --ignore-engines --ignore-optional --prefer-offline 
       - name: Running unit test
         run: yarn test
 
