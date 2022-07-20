@@ -2,7 +2,7 @@ version: '3.9'
 services:
   home-back:
     container_name: home-back
-    build: .
+    image: mkeort/home-back
     ports:
       - "80:3000"
   home-database:
