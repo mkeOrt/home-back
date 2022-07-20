@@ -63,8 +63,9 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
+          platforms: linux/amd64,linux/arm64
           push: true
-          tags: mkeort/home-back:latest
+          tags: mkeort/home-back:latest, mkeort/home-back:${{ github.sha }}
 
 
   # deployment:
