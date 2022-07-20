@@ -14,6 +14,7 @@ export class ProductsController {
 
   @Get()
   findAll() {
+    console.log('testing get all')
     return this.productsService.findAll();
   }
 
