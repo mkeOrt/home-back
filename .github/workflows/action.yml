@@ -23,7 +23,7 @@ jobs:
       - name: Get branch name
         id: branch-name
         uses: tj-actions/branch-names@v5.4
-        run: echo using branch ${{ steps.branch-name.outputs.current_branch }}
+      - run: echo using branch ${{ steps.branch-name.outputs.current_branch }}
       - uses: actions/checkout@v3
         with:
           ref: ${{ steps.branch-name.outputs.current_branch }}
@@ -42,7 +42,7 @@ jobs:
       - name: Get branch name
         id: branch-name
         uses: tj-actions/branch-names@v5.4
-        run: echo using branch ${{ steps.branch-name.outputs.current_branch }}
+      - run: echo using branch ${{ steps.branch-name.outputs.current_branch }}
       - uses: actions/checkout@v3
         with:
           ref: ${{ steps.branch-name.outputs.current_branch }}
