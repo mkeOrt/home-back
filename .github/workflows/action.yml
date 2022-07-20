@@ -44,8 +44,8 @@ jobs:
   #       run: yarn test
 
   create-image:
-    runs-on: ubuntu-latest
     if: ${{ github.event_name == 'push' }}
+    runs-on: ubuntu-latest
     steps:
       - name: deployment
         run: echo doploying!
@@ -66,6 +66,23 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: mkeort/home-back:latest, mkeort/home-back:${{ github.sha }}
+      - uses: actions/upload-artifact@v3
+        with:
+          name: my-artifact
+          path: docker-compose.yml
+
+  deployment:
+    if: ${{ github.event_name == 'push' }}
+    needs: [create-image]
+    runs-on: self-hosted
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: my-artifact
+          path: docker-compose.yml
+      - name: docker compose
+        run: docker compose up -d --build
+
 
 
   # deployment:
