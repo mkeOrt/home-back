@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
   pull_request:
-    branches: [main, development]
+    branches: [main]
     types: [opened, synchronize]
 
 jobs:
@@ -20,15 +20,7 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - name: Get branch name
-        id: branch-name
-        uses: tj-actions/branch-names@v5.4
-      - name: Running on the default branch.
-        run: |
-          echo "Running on default: ${{ steps.branch-name.outputs.current_branch }}"
       - uses: actions/checkout@v3
-        with:
-          ref: ${{ github.ref_name }}
       - uses: actions/setup-node@v3
         with:
           node-version: 18.6.0
@@ -42,8 +34,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-        with:
-          ref: ${{ github.ref_name }}
       - uses: actions/setup-node@v3
         with:
           node-version: 18.6.0
