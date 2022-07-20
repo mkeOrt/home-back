@@ -69,7 +69,7 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: my-artifact
-          path: docker-compose.yml
+          path: .
 
   deployment:
     if: ${{ github.event_name == 'push' }}
