@@ -8,40 +8,40 @@ on:
     types: [opened, synchronize]
 
 jobs:
-  # avoid_redundancy:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Cancel Previous Runs
-  #       uses: styfle/cancel-workflow-action@0.9.1
-  #       with:
-  #         access_token: ${{ github.token }}
+  avoid_redundancy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.9.1
+        with:
+          access_token: ${{ github.token }}
 
 
-  # lint:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #     - uses: actions/setup-node@v3
-  #       with:
-  #         node-version: 18.6.0
-  #         cache: 'yarn'
-  #     - name: Install dependencies
-  #       run: yarn --ignore-engines --ignore-optional --prefer-offline 
-  #     - name: Running lint
-  #       run: yarn lint
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18.6.0
+          cache: 'yarn'
+      - name: Install dependencies
+        run: yarn --ignore-engines --ignore-optional --prefer-offline 
+      - name: Running lint
+        run: yarn lint
   
-  # test:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #     - uses: actions/setup-node@v3
-  #       with:
-  #         node-version: 18.6.0
-  #         cache: 'yarn'
-  #     - name: Install dependencies
-  #       run: yarn --ignore-engines --ignore-optional --prefer-offline 
-  #     - name: Running unit test
-  #       run: yarn test
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18.6.0
+          cache: 'yarn'
+      - name: Install dependencies
+        run: yarn --ignore-engines --ignore-optional --prefer-offline 
+      - name: Running unit test
+        run: yarn test
 
   create-image:
     if: ${{ github.event_name == 'push' }}
@@ -81,16 +81,3 @@ jobs:
           name: my-artifact
       - name: docker compose
         run: docker compose pull && docker compose up -d --build
-
-
-
-  # deployment:
-  #   needs: [lint, test]
-  #   runs-on: self-hosted
-  #   steps:
-  #     - name: deployment
-  #       if: ${{ github.event_name == 'push' }}
-  #       run: echo doploying!
-  #     - uses: actions/checkout@v3
-  #     - name: docker compose
-  #       run: docker compose up -d --build
