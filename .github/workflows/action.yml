@@ -57,6 +57,11 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Build and push
         uses: docker/build-push-action@v3
+        with:
+          context: .
+          push: true
+          tags: home-back:latest
+
 
   deployment:
     needs: [lint, test]
