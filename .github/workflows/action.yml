@@ -69,7 +69,7 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: my-artifact
-          path: .
+          path: docker-compose.yml
 
   deployment:
     if: ${{ github.event_name == 'push' }}
@@ -79,7 +79,6 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: my-artifact
-          path: docker-compose.yml
       - name: docker compose
         run: docker compose pull && docker compose up -d --build
 
