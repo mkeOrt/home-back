@@ -14,7 +14,6 @@ export class ProductsController {
 
   @Get()
   findAll() {
-    console.log('getting data updated');
     return this.productsService.findAll();
   }
 
